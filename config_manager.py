@@ -122,31 +122,44 @@ class ConfigManager:
             return False
     
     # ========== 系统层配置（只读） ==========
+
+    def _get_system_config(self, key: str, default: str = "") -> str:
+        """从 Streamlit Secrets 或环境变量获取系统配置"""
+        # 1. 尝试从 Streamlit Secrets 读取
+        try:
+            import streamlit as st
+            if key in st.secrets:
+                return st.secrets[key]
+        except:
+            pass
+            
+        # 2. 从环境变量读取
+        return os.getenv(key, default)
     
     @property
     def system_dashscope_key(self) -> str:
         """系统层 DashScope Key"""
-        return os.getenv("DASHSCOPE_API_KEY", "")
+        return self._get_system_config("DASHSCOPE_API_KEY")
     
     @property
     def system_openai_key(self) -> str:
         """系统层 OpenAI Key"""
-        return os.getenv("OPENAI_API_KEY", "")
+        return self._get_system_config("OPENAI_API_KEY")
     
     @property
     def system_openai_base_url(self) -> str:
         """系统层 OpenAI Base URL"""
-        return os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+        return self._get_system_config("OPENAI_BASE_URL", "https://api.openai.com/v1")
     
     @property
     def system_anthropic_key(self) -> str:
         """系统层 Anthropic Key"""
-        return os.getenv("ANTHROPIC_API_KEY", "")
+        return self._get_system_config("ANTHROPIC_API_KEY")
     
     @property
     def system_ollama_url(self) -> str:
         """系统层 Ollama URL"""
-        return os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+        return self._get_system_config("OLLAMA_URL", "http://localhost:11434")
     
     # ========== 合并配置（用户层优先） ==========
     
