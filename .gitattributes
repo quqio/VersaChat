@@ -1,0 +1,20 @@
+# 自动处理文本文件的换行符
+# 提交时转换为 LF，检出时根据系统转换为 CRLF (Windows) 或 LF (Mac/Linux)
+* text=auto
+
+# 明确指定某些文件的换行符行为
+*.py text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+
+# 二进制文件不转换换行符
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

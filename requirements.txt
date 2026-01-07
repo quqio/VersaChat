@@ -1,0 +1,19 @@
+# VersaChat 依赖列表
+
+# 核心框架
+streamlit>=1.28.0
+
+# LLM SDK
+dashscope>=1.14.0
+
+# 安全加密
+cryptography>=41.0.0
+
+# HTTP 请求
+requests>=2.31.0
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# 可选：Anthropic SDK（如需使用 Claude）
+# anthropic>=0.18.0
