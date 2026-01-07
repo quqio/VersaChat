@@ -110,9 +110,17 @@ st.markdown("""
         max-width: 1200px;
     }
     
-    /* 隐藏 Streamlit 默认元素 */
-    #MainMenu, footer, header {visibility: hidden;}
+    /* 隐藏 Streamlit 默认元素（保留侧边栏控制按钮） */
+    #MainMenu, footer {visibility: hidden;}
     .stDeployButton {display: none;}
+    
+    /* 确保侧边栏折叠/展开按钮始终可见 */
+    [data-testid="stSidebarCollapsedControl"],
+    [data-testid="collapsedControl"] {
+        visibility: visible !important;
+        display: flex !important;
+        z-index: 999999 !important;
+    }
     
     /* === 3. 侧边栏 === */
     [data-testid="stSidebar"] {
